@@ -53,7 +53,7 @@ export const deleteEmails = async (request, response) => {
 
 export const moveEmailsToBin = async (request, response) => {
     try {
-        await Email.updateMany({ _id: { $in: request.body }}, { $set: { bin: true, starred: false, type: '' }});
+        await Email.deleteMany({ _id: { $in: request.body }}, { $set: { bin: true, starred: false, type: '' }});
     } catch (error) {
         response.status(500).json(error.message);   
     }
